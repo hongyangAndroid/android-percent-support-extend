@@ -10,5 +10,6 @@
         <attr name="layout_marginBottomPercent" format="string"/>
         <attr name="layout_marginStartPercent" format="string"/>
         <attr name="layout_marginEndPercent" format="string"/>
+        <attr name="layout_textSizePercent" format="string"/>
     </declare-styleable>
 </resources>

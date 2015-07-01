@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <View
         android:id="@+id/top_left"
         android:layout_width="match_parent"
@@ -29,6 +30,5 @@
         android:background="#ff00ff22"
         app:layout_heightPercent="34%"
         app:layout_marginLeftPercent="50%" />
-
 
 </android.support.percent.PercentRelativeLayout>

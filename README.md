@@ -13,10 +13,13 @@ contains project for android studio and eclipse .
 * 添加了PercentLinearLayout
 * support for all attrs use fraction value  based on specified width or height.
 * 支持百分比指定特定的参考值，比如宽度或者高度。
-	
+* support for use app:layout_textSizePercent for textSize of textView
+ 	
 	>such as `app:layout_heightPercent="50%w"`,
 `app:layout_marginPercent="15%w"`,
 `app:layout_marginBottomPercent="20%h"`.
+* 支持通过app:layout_textSizePercent设置textView的textSize
+
 
 
 

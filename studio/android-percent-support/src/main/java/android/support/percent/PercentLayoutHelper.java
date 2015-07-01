@@ -22,8 +22,10 @@ import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.imooc.android_percent_support.R;
 
@@ -131,6 +133,17 @@ public class PercentLayoutHelper
                 }
                 if (info != null)
                 {
+                    //textsize percent support
+                    if(view instanceof TextView)
+                    {
+                        PercentLayoutInfo.PercentVal textSizePercent = info.textSizePercent;
+                        if (textSizePercent != null)
+                        {
+                            int base = textSizePercent.isBaseWidth ? widthHint : heightHint;
+                            float textSize = (int) (base * textSizePercent.percent);
+                            ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+                        }
+                    }
                     if (params instanceof ViewGroup.MarginLayoutParams)
                     {
                         info.fillMarginLayoutParams((ViewGroup.MarginLayoutParams) params,
@@ -276,6 +289,19 @@ public class PercentLayoutHelper
             }
             info = info != null ? info : new PercentLayoutInfo();
             info.endMarginPercent = percentVal;
+        }
+
+        //textSizePercent
+        sizeStr = array.getString(R.styleable.PercentLayout_Layout_layout_textSizePercent);
+        percentVal = getPercentVal(sizeStr, false);
+        if (percentVal != null)
+        {
+            if (Log.isLoggable(TAG, Log.VERBOSE))
+            {
+                Log.v(TAG, "percent text size: " + percentVal.percent);
+            }
+            info = info != null ? info : new PercentLayoutInfo();
+            info.textSizePercent = percentVal;
         }
         array.recycle();
         if (Log.isLoggable(TAG, Log.DEBUG))
@@ -465,7 +491,10 @@ public class PercentLayoutHelper
 
         public PercentVal endMarginPercent;
 
+        public PercentVal textSizePercent ;
+
         /* package */ final ViewGroup.MarginLayoutParams mPreservedParams;
+
 
         public PercentLayoutInfo()
         {
