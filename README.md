@@ -62,6 +62,25 @@ also , I wanna View has same margin for all direction , if we use 5% , leftMargi
 
 有时候，我希望View的margin在4个方向的值是一致的，如果使用原本的库，5%会造成横向与纵向的值不一致。而根据添加的功能，你可以使用：`app:layout_marginPercent="5%w"`。
 
+
+## How to use 
+
+对于Android Studio，只需要添加：
+
+```xml
+compile 'com.zhy:percent-support-extends:1.0'
+```
+
+就可以使用，所有的类名为，源码的话，大家直接下载这个库即可：
+
+```java
+com.zhy.android.percent.support.PercentLinearLayout
+com.zhy.android.percent.support.PercentRelativeLayout
+com.zhy.android.percent.support.PercentFrameLayout
+```
+
+
+
 ##Some Example
 
 <img src="sc_01.png" width="320px"/>
@@ -268,6 +287,8 @@ xml:
 </android.support.percent.PercentFrameLayout>
 
 ```
+
+
 
 ## About me
 
