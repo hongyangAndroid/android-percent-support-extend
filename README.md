@@ -1,159 +1,89 @@
 # android-percent-support-extend
->a extends lib for android-percent-support
->
+
 >对于android-percent-support的扩展库。
 
-contains project for android studio and eclipse . 
+## 一 为什么要扩展这个库
 
-上面包含as和ec的项目，自行导入。
+首先我们回顾下百分比布局库的用法，提供了`PercentRelativeLayout`、`PercentFrameLayout`供大家在编写的时候，对于以下属性：
 
-* support for android-percent-support's orgin abilities 
-* 支持该库的原有功能，且用法不变
-* add PercentLinearLayout
-* 添加了PercentLinearLayout
-* support for all attrs use fraction value  based on specified width or height.
-* 支持百分比指定特定的参考值，比如宽度或者高度。
-* support for use app:layout_textSizePercent for textSize of textView
- 	
-	>such as `app:layout_heightPercent="50%w"`,
-`app:layout_marginPercent="15%w"`,
-`app:layout_marginBottomPercent="20%h"`.
-* 支持通过app:layout_textSizePercent设置textView的textSize
+`layout_widthPercent`、`layout_heightPercent`、 
+`layout_marginPercent`、`layout_marginLeftPercent`、 
+`layout_marginTopPercent`、`layout_marginRightPercent`、 
+`layout_marginBottomPercent`、`layout_marginStartPercent`、`layout_marginEndPercent`。
 
+可以使用百分比进行设置宽、高、边距，的确给我们在适配上提供了极大的便利，但是在使用过程中，觉得存在一些场景无法得到满足。什么场景呢？下面我举几个例子。
 
+1. 当使用图片时，无法设置宽高的比例
+	
+	比如我们的图片宽高是200*100的，我们在使用过程中我们设置宽高为20%、10%，这样会造成图片的比例失调。为什么呢？因为20%参考的是屏幕的宽度，而10%参考的是屏幕的高度。
+	
+2. 很难使用百分比定义一个正方形的控件
+	
+	比如，我现在界面的右下角有一个`FloatingActionButton `，我希望其宽度和高度都为屏幕宽度的10%，很难做到。
+	
+3. 一个控件的margin四个方向值一致
+	
+	有些时候，我设置margin，我希望四边的边距一致的，但是如果目前设置5%，会造成，上下为高度的5%，左右边距为宽度的5%。
+	
+综合上述这些问题，可以发现目前的percent-support-lib并不能完全满足我们的需求，所以我们考虑对其进行扩展。说白了，我们就希望在布局的时候可以自己设定参考看度还是高度，比如上述2，我们对于宽高可以写成10%w，10%w。也就是在不改变原库的用法的前提下，添加一些额外的支持。
 
+<hr/>
 
+## 二 扩展的功能
 
-we not only support fraction value , but also we support use fraction value based on width or height  , such as 10% , 10%w , 10%h 。 
+对于官方库，做了如下的改变：
 
-不仅支持百分比设置布局的值，并且可以指定百分比参考的是宽度还是高度。如果不指定宽度和高度，则默认和原本的库效果一致。
-
-Why I Why extend this library ?
-
-为什么要扩展你这个库？
-
-Because , there are some views in my layout are square , such as FloatingActionButton , i wanna its' width and height both are 15% of width ， since I add this ability , so that I can define as below :
-
-因为，在我的布局中有部分View是正方形的大小，比如FloatingActionButton，我希望它的高度和宽度都是宽度的15%，因此我添加了该功能，以至于我可以按照下面的写法编写：
-
-```
-   <android.support.percent.PercentFrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:background="#ffcc5ec7"
-            app:layout_heightPercent="50%w"
-            app:layout_widthPercent="50%w">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="#ff7ecc16"
-                android:gravity="center"
-                android:text="margin 15% of w"
-                app:layout_marginPercent="15%w"
-                />
-
-        </android.support.percent.PercentFrameLayout>
-```
-
-also , I wanna View has same margin for all direction , if we use 5% , leftMargin and rightMagin are width'5% , topMargin and bottonMargin are height'5% . In this library , you can use : `app:layout_marginPercent="5%w"`.
-
-有时候，我希望View的margin在4个方向的值是一致的，如果使用原本的库，5%会造成横向与纵向的值不一致。而根据添加的功能，你可以使用：`app:layout_marginPercent="5%w"`。
-
-
-## How to use 
-
-对于Android Studio，只需要添加：
+1. 不改变原有库的用法
+2. 添加了`PercentLinearLayout `
+3. 支持百分比指定特定的参考值，比如宽度或者高度。
+	
+	例如：`app:layout_heightPercent="50%w"`, `app:layout_marginPercent="15%w"`,
+	`app:layout_marginBottomPercent="20%h"`.
+4. 支持通过app:layout_textSizePercent设置textView的textSize
+5. 对于外层套ScrollView的问题，目前可以在`PercentLinearLayout `的外层使用ScrollView，不过对于宽度的百分比参考的就是android.R.id.content的高度(因为，无法参考父控件的高度，父控件的高度理论上依赖于子View高度，且模式为UNSPECIFIED)。
+	
+	
+对于如何导入，也是相当的简单，android studio的用户，直接：
 
 ```xml
-compile 'com.zhy:percent-support-extends:1.0'
+dependencies {
+    //...
+    compile 'com.zhy:percent-support-extends:1.0.1'
+}
+
 ```
+不需要导入官方的percent-support-lib了。
 
-就可以使用，所有的类名为，源码的话，大家直接下载这个库即可：
+对于的三个类分别为：
 
-```java
+```xml
 com.zhy.android.percent.support.PercentLinearLayout
 com.zhy.android.percent.support.PercentRelativeLayout
 com.zhy.android.percent.support.PercentFrameLayout
 ```
 
+###支持的属性 :
+
+- heightPercent
+- widthPercent
+- marginBottomPercent
+- marginEndPercent
+- marginLeftPercent
+- marginPercent
+- marginRightPercent 
+- marginStartPercent
+- marginTopPercent
+- layout_textSizePercent
+
+对于值可以取：10%w , 10%h , 10% 
+
+对于eclipse的用户：github上自行下载源码，就几个类和一个attrs.xml，也可以在[bintray.com/percent-support-extends ](https://bintray.com/hongyangandroid/maven/android-screen-support-ext/view#files)下载相关文件。
 
 
-##Some Example
 
-<img src="sc_01.png" width="320px"/>
+## 三 具体的示例
 
-xml:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-
-
-<android.support.percent.PercentLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ff44aacc"
-        android:text="width:60%,height:5%"
-        android:textColor="#ffffff"
-        app:layout_heightPercent="5%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_widthPercent="60%"/>
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ff4400cc"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:text="width:70%,height:10%"
-        app:layout_heightPercent="10%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_widthPercent="70%"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ff44aacc"
-        android:gravity="center"
-        android:text="width:80%,height:15%"
-        android:textColor="#ffffff"
-        app:layout_heightPercent="15%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_widthPercent="80%"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#ff4400cc"
-        android:gravity="center"
-        android:text="width:90%,height:5%"
-        android:textColor="#ffffff"
-        app:layout_heightPercent="20%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_widthPercent="90%"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#ff44aacc"
-        android:gravity="center"
-        android:text="width:100%,height:25%"
-        android:textColor="#ffffff"
-        app:layout_heightPercent="25%"
-        app:layout_marginBottomPercent="5%"
-        />
-
-
-</android.support.percent.PercentLinearLayout>
-
-```
+#### Demo 1
 
 <img src="sc_02.png" width="320px"/>
 
@@ -163,14 +93,14 @@ xml:
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.percent.PercentFrameLayout
+<com.zhy.android.percent.support.PercentFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.percent.PercentFrameLayout
+    <com.zhy.android.percent.support.PercentFrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -178,7 +108,7 @@ xml:
         app:layout_heightPercent="50%w"
         app:layout_widthPercent="50%w">
 
-        <android.support.percent.PercentFrameLayout
+        <com.zhy.android.percent.support.PercentFrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center"
@@ -196,9 +126,9 @@ xml:
                 app:layout_marginPercent="15%w"
                 />
 
-        </android.support.percent.PercentFrameLayout>
+        </com.zhy.android.percent.support.PercentFrameLayout>
 
-    </android.support.percent.PercentFrameLayout>
+    </com.zhy.android.percent.support.PercentFrameLayout>
 
     <TextView android:layout_width="0dp"
               android:layout_height="0dp"
@@ -211,10 +141,12 @@ xml:
               app:layout_widthPercent="15%w"/>
 
 
-</android.support.percent.PercentFrameLayout>
-
+</com.zhy.android.percent.support.PercentFrameLayout>
 
 ```
+
+#### Demo 2
+
 
 <img src="sc_03.png" width="320px"/>
 
@@ -222,39 +154,50 @@ xml:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentFrameLayout
+<com.zhy.android.percent.support.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true">
 
     <TextView
-        android:id="@+id/id_test"
+        android:id="@+id/row_one_item_one"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_gravity="left|top"
-        android:background="#44ff0000"
+        android:layout_alignParentTop="true"
+        android:background="#7700ff00"
+        android:text="w:70%,h:20%"
         android:gravity="center"
-        android:onClick="test1"
-        android:text="width:30%,height:20%"
-        app:layout_heightPercent="20%"
-        app:layout_widthPercent="30%"/>
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="right|top"
-        android:background="#4400ff00"
-        android:gravity="center"
-        android:text="width:70%,height:20%"
         app:layout_heightPercent="20%"
         app:layout_widthPercent="70%"/>
 
+    <TextView
+        android:id="@+id/row_one_item_two"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@+id/row_one_item_one"
+        android:background="#396190"
+        android:text="w:30%,h:20%"
+        app:layout_heightPercent="20%"
+        android:gravity="center"
+        app:layout_widthPercent="30%"/>
+
+
+    <ImageView
+        android:id="@+id/row_two_item_one"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/tangyan"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/row_one_item_one"
+        android:background="#d89695"
+        app:layout_heightPercent="70%"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_gravity="bottom"
+        android:layout_below="@id/row_two_item_one"
         android:background="#770000ff"
         android:gravity="center"
         android:text="width:100%,height:10%"
@@ -262,31 +205,112 @@ xml:
         app:layout_widthPercent="100%"/>
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:src="@drawable/tangyan"
-        app:layout_heightPercent="50%w"
-        app:layout_widthPercent="50%w"/>
+</com.zhy.android.percent.support.PercentRelativeLayout>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="10%h"
-        app:layout_widthPercent="10%h"
-        android:text="10%h,10%h"
-        android:gravity="center"
-        android:layout_gravity="bottom|right"
-        android:background="#44ff0000"
-        app:layout_marginBottomPercent="20%h"
-        app:layout_marginRightPercent="10%"/>
-
-
-</android.support.percent.PercentFrameLayout>
 
 ```
+
+ok，例子都比较简单，主要就一个布局文件，可以看出上述我们可以给宽度、高度，边距等指定参考值为宽度或者高度。这样的话，在保证图片宽、高比例、控件设置为正方形等需求就没问题了。
+
+<hr/>
+
+接下来还有个例子，功能主要是设置TextView对于textSize的百分比设置；以及对于ScrollView的支持。当然了，对于ScrollView的支持，这个理论上是不支持的，因为大家都清楚，如果`PercentLinearLayout`在ScrollView中，那么高度的模式肯定是`UNSPECIFIED`，那么理论上来说高度是无限制的，也就是依赖于子View的高度，而百分比布局的高度是依赖于父View的高度的，所有是互斥的。而我们支持是：考虑到编写代码的时候，大多参考的是屏幕高度（android.R.id.content）的高度，所以如果在ScrollView中，编写10%h，这个百分比是依赖于屏幕高度的（不包括ActionBar的高度）。
+
+#### Demo 3
+
+<img src="percent_04.gif" width="320px"/>
+
+xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.zhy.android.percent.support.PercentLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff44aacc"
+            android:gravity="center"
+            android:text="width:60%,height:5%,ts:3%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="5%"
+            app:layout_marginBottomPercent="5%"
+            app:layout_textSizePercent="3%"
+            app:layout_widthPercent="60%"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff4400cc"
+            android:gravity="center"
+            android:text="width:70%,height:10%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="5%"
+            app:layout_widthPercent="70%"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff44aacc"
+            android:gravity="center"
+            android:text="w:80%,h:15%,textSize:5%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="15%"
+            app:layout_marginBottomPercent="5%"
+            app:layout_textSizePercent="5%"
+            app:layout_widthPercent="80%"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff4400cc"
+            android:gravity="center"
+            android:text="width:90%,height:5%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="20%"
+            app:layout_marginBottomPercent="5%"
+            app:layout_widthPercent="90%"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#ff44aacc"
+            android:gravity="center"
+            android:text="width:100%,height:25%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="25%"
+            app:layout_marginBottomPercent="5%"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#ff44aacc"
+            android:gravity="center"
+            android:text="width:100%,height:30%"
+            android:textColor="#ffffff"
+            app:layout_heightPercent="30%"
+            app:layout_marginBottomPercent="5%"
+            />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</ScrollView>
+
+
+```
+
+上面的第三个TextView的字体设置的就是5%（默认参考容器高度）。整个PercentLinearLayout在ScrollView中。ok~ 姑且这样，由于源码比较简单，大家可以根据自己的实际需求去修改，前提尽可能不要改变原有的功能。
 
 
 
@@ -300,9 +324,9 @@ xml:
 
 
 <hr/>
-<hr/>
 
-Here is the Readme of Android Percent Support Lib Sample ：
+==> 接下来是原库的用法：
+
 
 
 Android Percent Support Lib Sample :triangular_ruler::triangular_ruler::triangular_ruler:
