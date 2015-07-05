@@ -27,7 +27,7 @@
 	
 综合上述这些问题，可以发现目前的percent-support-lib并不能完全满足我们的需求，所以我们考虑对其进行扩展。说白了，我们就希望在布局的时候可以自己设定参考看度还是高度，比如上述2，我们对于宽高可以写成10%w，10%w。也就是在不改变原库的用法的前提下，添加一些额外的支持。
 
-<hr/>
+
 
 ## 二 扩展的功能
 
@@ -42,6 +42,7 @@
 4. 支持通过app:layout_textSizePercent设置textView的textSize
 5. 对于外层套ScrollView的问题，目前可以在`PercentLinearLayout `的外层使用ScrollView，不过对于宽度的百分比参考的就是android.R.id.content的高度(因为，无法参考父控件的高度，父控件的高度理论上依赖于子View高度，且模式为UNSPECIFIED)。
 	
+## 三 用法
 	
 对于如何导入，也是相当的简单，android studio的用户，直接：
 
@@ -64,15 +65,15 @@ com.zhy.android.percent.support.PercentFrameLayout
 
 ###支持的属性 :
 
-- heightPercent
-- widthPercent
-- marginBottomPercent
-- marginEndPercent
-- marginLeftPercent
-- marginPercent
-- marginRightPercent 
-- marginStartPercent
-- marginTopPercent
+- layout_heightPercent
+- layout_widthPercent
+- layout_marginBottomPercent
+- layout_marginEndPercent
+- layout_marginLeftPercent
+- layout_marginPercent
+- layout_marginRightPercent 
+- layout_marginStartPercent
+- layout_marginTopPercent
 - layout_textSizePercent
 
 对于值可以取：10%w , 10%h , 10% 
@@ -81,7 +82,7 @@ com.zhy.android.percent.support.PercentFrameLayout
 
 
 
-## 三 具体的示例
+## 四 具体的示例
 
 #### Demo 1
 
@@ -316,7 +317,11 @@ xml:
 
 ## About me
 
-* [my blog](http://blog.csdn.net/lmj623565791)
+* [博客](http://blog.csdn.net/lmj623565791)
+* [新浪微博](http://weibo.com/u/3165018720)
+* >微信公众号：hongyangAndroid
+（欢迎关注，第一时间推送博文信息）
+<img  src="http://img.my.csdn.net/uploads/201501/30/1422600516_2905.jpg" width="200px"/>
 
 
 
