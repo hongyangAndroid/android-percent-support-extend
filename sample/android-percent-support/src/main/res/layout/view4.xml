@@ -13,19 +13,20 @@
         android:layout_alignParentTop="true"
         android:background="#7700ff00"
         android:text="w:70%,h:20%"
+        android:maxHeight="10dp"
         android:gravity="center"
         app:layout_heightPercent="20%"
         app:layout_widthPercent="70%"/>
 
     <TextView
         android:id="@+id/row_one_item_two"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/row_one_item_one"
         android:background="#396190"
         android:text="w:30%,h:20%"
-        app:layout_heightPercent="20%"
         android:gravity="center"
+        app:layout_minHeightPercent="20%"
         app:layout_widthPercent="30%"/>
 
 

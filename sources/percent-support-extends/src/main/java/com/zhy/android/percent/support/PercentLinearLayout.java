@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 /**
  * Created by zhy on 15/6/30.
@@ -42,7 +43,7 @@ public class PercentLinearLayout extends LinearLayout
 
         Log.d(TAG, MeasureSpec.toString(heightMeasureSpec));
         //fixed scrollview height problems
-        if (heightMode == MeasureSpec.UNSPECIFIED)
+        if (heightMode == MeasureSpec.UNSPECIFIED && getParent() != null && (getParent() instanceof ScrollView))
         {
             int baseHeight = 0;
             Context context = getContext();
