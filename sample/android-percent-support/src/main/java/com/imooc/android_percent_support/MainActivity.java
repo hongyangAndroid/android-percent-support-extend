@@ -19,20 +19,25 @@ public class MainActivity extends ActionBarActivity
     private ListView mListView;
     private LayoutInflater mInflater;
 
+    private static final int LISTVIEW_POS = 6;
+
     private String[] mTitle = {
             "PercentLinearLayout",
             "PercentW or PercentH",
             "PercentRelativeLayout 1",
             "PercentFrameLayout",
             "PercentRelativeLayout 2",
-            "PercentLinearLayout in ScrollView"};
+            "PercentLinearLayout in ScrollView",
+            "PercentInListView"
+    };
     private int[] mContentIds = {
             R.layout.view5,
             R.layout.view1,
             R.layout.view2,
             R.layout.view3,
             R.layout.view4,
-            R.layout.view6
+            R.layout.view6,
+            -1
     };
 
 
@@ -65,6 +70,15 @@ public class MainActivity extends ActionBarActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                switch (position)
+                {
+                    case LISTVIEW_POS:
+                        Intent intent = new Intent(MainActivity.this, ListViewTestActivity.class) ;
+                        startActivity(intent);
+                        return ;
+                }
+
+
                 Intent intent = new Intent(MainActivity.this, ItemActivity.class);
                 intent.putExtra("contentId", mContentIds[position]);
                 intent.putExtra("title",mTitle[position]);
