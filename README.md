@@ -50,12 +50,14 @@
 	
 ## 三 用法
 	
+### Android Studio
+
 对于如何导入，也是相当的简单，android studio的用户，直接：
 
 ```xml
 dependencies {
     //...
-    compile 'com.zhy:percent-support-extends:1.0.4'
+    compile 'com.zhy:percent-support-extends:1.0.5'
 }
 
 ```
@@ -84,7 +86,9 @@ com.zhy.android.percent.support.PercentFrameLayout
 
 对于值可以取：10%w , 10%h , 10% 
 
-对于eclipse的用户：github上自行下载源码，就几个类和一个attrs.xml，也可以在[bintray.com/percent-support-extends ](https://bintray.com/hongyangandroid/maven/android-screen-support-ext/view#files)下载相关文件。
+### Eclispe 
+
+对于eclipse的用户：下载完项目后，导入[eclipse\_demo\_and\_sources](eclipse_demo_and_sources)中的`android-percent-support-extend-sample`，将`android-percent-support-extend-lib`以library方式引入。
 
 
 
