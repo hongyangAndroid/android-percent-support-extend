@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.zhy.android.percent.support.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ff44aacc"
+        app:layout_heightPercent="50%w"
+        app:layout_marginPercent="2%h"
+        app:layout_paddingPercent="5.5%w"
+        app:layout_widthPercent="50%w"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffcc5ec7"
+            android:gravity="center"
+            android:text="parent's padding is 5.5%w"
+            />
+
+    </com.zhy.android.percent.support.PercentFrameLayout>
+
+
+    <com.zhy.android.percent.support.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|bottom"
+        android:background="#ffcc5ec7"
+        app:layout_heightPercent="50%w"
+        app:layout_marginPercent="2%h"
+        app:layout_paddingBottomPercent="8%w"
+        app:layout_paddingLeftPercent="2%w"
+        app:layout_paddingRightPercent="4%w"
+        app:layout_paddingTopPercent="6%w"
+        app:layout_widthPercent="50%w"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff44aacc"
+            android:gravity="center"
+            android:text="parent's padding is 2%w 4%w 6%w 8%w(l,r,t,b)"
+            />
+
+    </com.zhy.android.percent.support.PercentFrameLayout>
+
+</com.zhy.android.percent.support.PercentFrameLayout>
+
+
+
+

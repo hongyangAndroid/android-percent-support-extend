@@ -2,7 +2,75 @@
 
 >对于android-percent-support的扩展库。
 
-## 一 为什么要扩展这个库
+目前支持：
+
+1. 不改变原有库的用法
+2. 添加了`PercentLinearLayout `
+3. 支持宽度高度百分比设置值
+4. 支持margin百分比设置值
+5. 支持padding百分比设置值
+6. 支持minWidth , maxWidth , minHeight , maxHeight百分比设置值
+4. 支持TextView、Button、EditText的textSize
+5. 支持ScrollView内部为Linearlayout
+
+目前最新版本为，尽可能使用最新版本，源码和demo在github中： 
+
+```xml
+compile 'com.zhy:percent-support-extends:1.0.6'
+```
+
+## 一 扩展的功能
+
+
+对于官方库，做了如下的改变：
+
+1. 不改变原有库的用法
+2. 添加了`PercentLinearLayout `
+3. 支持百分比指定特定的参考值，比如宽度或者高度。
+	
+	例如：
+	
+	```xml
+	app:layout_heightPercent="50%w"
+	app:layout_marginPercent="15%w"
+	app:layout_marginBottomPercent="20%h"
+	```
+4. 支持通过app:layout_textSizePercent设置textView（button,editText）的textSize
+	
+	例如：
+	
+	```xml
+	 <TextView
+          app:layout_textSizePercent="3%h"
+     />
+	```
+
+5. 对于外层套ScrollView的问题，目前可以在`PercentLinearLayout `的外层使用ScrollView，不过对于宽度的百分比参考的就是android.R.id.content的高度(因为，无法参考父控件的高度，父控件的高度理论上依赖于子View高度，且模式为UNSPECIFIED)。
+6. 支持minWidth,maxWidth,minHeight,maxHeight的支持。
+
+	例如：
+	
+	```xml
+	app:layout_maxWidthPercent
+	app:layout_maxHeightPercent
+	app:layout_minWidthPercent
+	app:layout_minWidthPercent
+	```
+	（注：用法和maxHeight等一致，如果使用：值会覆盖原本的maxHeight等属性）。
+7. 支持padding百分比设置值	
+	
+	例如：
+	
+	```xml
+	app:layout_paddingBottomPercent="8%w"
+    app:layout_paddingLeftPercent="2%w"
+    app:layout_paddingRightPercent="4%w"
+    app:layout_paddingTopPercent="6%w"
+	```
+
+	
+
+## 二 为什么要扩展这个库
 
 首先我们回顾下百分比布局库的用法，提供了`PercentRelativeLayout`、`PercentFrameLayout`供大家在编写的时候，对于以下属性：
 
@@ -29,24 +97,7 @@
 
 
 
-## 二 扩展的功能
 
-对于官方库，做了如下的改变：
-
-1. 不改变原有库的用法
-2. 添加了`PercentLinearLayout `
-3. 支持百分比指定特定的参考值，比如宽度或者高度。
-	
-	例如：`app:layout_heightPercent="50%w"`, `app:layout_marginPercent="15%w"`,
-	`app:layout_marginBottomPercent="20%h"`.
-4. 支持通过app:layout_textSizePercent设置textView的textSize
-5. 对于外层套ScrollView的问题，目前可以在`PercentLinearLayout `的外层使用ScrollView，不过对于宽度的百分比参考的就是android.R.id.content的高度(因为，无法参考父控件的高度，父控件的高度理论上依赖于子View高度，且模式为UNSPECIFIED)。
-6. 支持`app:layout_maxWidthPercent`,
-`app:layout_maxHeightPercent`,
-`app:layout_minWidthPercent`,
-`app:layout_minWidthPercent`的支持。
-
-	（注：用法和maxHeight等一致，如果使用：值会覆盖原本的maxHeight等属性）。
 	
 ## 三 用法
 	
@@ -57,7 +108,7 @@
 ```xml
 dependencies {
     //...
-    compile 'com.zhy:percent-support-extends:1.0.5'
+    compile 'com.zhy:percent-support-extends:1.0.6'
 }
 
 ```
@@ -83,12 +134,23 @@ com.zhy.android.percent.support.PercentFrameLayout
 - layout_marginStartPercent
 - layout_marginTopPercent
 - layout_textSizePercent
+- layout_maxWidthPercent
+- layout_maxHeightPercent
+- layout_minWidthPercent
+- layout_minHeightPercent
+- layout_paddingPercent
+- layout_paddingTopPercent
+- layout_paddingBottomPercent
+- layout_paddingLeftPercent
+- layout_paddingRightPercent
 
 对于值可以取：10%w , 10%h , 10% 
 
 ### Eclispe 
 
 对于eclipse的用户：下载完项目后，导入[eclipse\_demo\_and\_sources](eclipse_demo_and_sources)中的`android-percent-support-extend-sample`，将`android-percent-support-extend-lib`以library方式引入。
+
+注意:eclipse的版本并非最新版本。
 
 
 

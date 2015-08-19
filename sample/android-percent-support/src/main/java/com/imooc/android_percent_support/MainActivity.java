@@ -27,8 +27,9 @@ public class MainActivity extends ActionBarActivity
             "PercentRelativeLayout 1",
             "PercentFrameLayout",
             "PercentRelativeLayout 2",
-            "PercentLinearLayout in ScrollView",
-            "PercentInListView"
+            "PercentLinearLayout in ScrollView2",
+            "PercentInListView",
+            "PercentPadding"
     };
     private int[] mContentIds = {
             R.layout.view5,
@@ -37,7 +38,8 @@ public class MainActivity extends ActionBarActivity
             R.layout.view3,
             R.layout.view4,
             R.layout.view6,
-            -1
+            -1,
+            R.layout.view7_padding,
     };
 
 
