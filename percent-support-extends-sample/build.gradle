@@ -22,6 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.zhy:percent-support-extends:1.0.6'
     compile 'com.android.support:support-v4:22.2.0'
+    compile project(':percent-support-extends')
 }

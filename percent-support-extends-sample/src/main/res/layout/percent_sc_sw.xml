@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/id_test"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="left|top"
+        android:background="#44ff0000"
+        android:gravity="center"
+        android:onClick="test1"
+        android:text="width:30%sw,height:20%sh"
+        app:layout_heightPercent="20%sh"
+        app:layout_widthPercent="30%sw"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="right|top"
+        android:background="#4400ff00"
+        android:gravity="center"
+        android:text="width:70%sw,height:20%sh"
+        app:layout_heightPercent="20%sh"
+        app:layout_widthPercent="70%sw"/>
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:background="#770000ff"
+        android:gravity="center"
+        android:text="width:100%,height:10%sw"
+        app:layout_heightPercent="10%sw"
+        app:layout_widthPercent="100%"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tangyan"
+        app:layout_heightPercent="30%sh"
+        app:layout_widthPercent="30%sh"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%sh"
+        app:layout_widthPercent="10%sh"
+        android:text="10%sh,10%sh"
+        android:gravity="center"
+        android:layout_gravity="bottom|right"
+        android:background="#44ff0000"
+        app:layout_marginBottomPercent="15%sw"
+        app:layout_marginRightPercent="10%sw"/>
+
+
+</com.zhy.android.percent.support.PercentFrameLayout>

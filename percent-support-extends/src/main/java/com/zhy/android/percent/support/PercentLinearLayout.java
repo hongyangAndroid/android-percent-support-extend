@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -41,7 +40,6 @@ public class PercentLinearLayout extends LinearLayout
         int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
         int tmpWidthMeasureSpec = MeasureSpec.makeMeasureSpec(widthSize, widthMode);
 
-        Log.d(TAG, MeasureSpec.toString(heightMeasureSpec));
         //fixed scrollview height problems
         if (heightMode == MeasureSpec.UNSPECIFIED && getParent() != null && (getParent() instanceof ScrollView))
         {
@@ -52,11 +50,9 @@ public class PercentLinearLayout extends LinearLayout
                 Activity act = (Activity) context;
                 int measuredHeight = act.findViewById(android.R.id.content).getMeasuredHeight();
                 baseHeight = measuredHeight;
-                Log.d(TAG, "measuredHeight = " + measuredHeight);
             } else
             {
                 baseHeight = getScreenHeight();
-                Log.d(TAG, "scHeight = " + baseHeight);
             }
             tmpHeightMeasureSpec = MeasureSpec.makeMeasureSpec(baseHeight, heightMode);
         }
