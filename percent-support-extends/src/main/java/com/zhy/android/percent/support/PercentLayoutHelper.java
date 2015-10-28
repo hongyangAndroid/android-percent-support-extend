@@ -361,7 +361,7 @@ public class PercentLayoutHelper
                 true);
         if (percentVal != null)
         {
-            checkForInfoExists(info);
+            info = checkForInfoExists(info);
             info.maxWidthPercent = percentVal;
         }
         //maxHeight
@@ -370,7 +370,7 @@ public class PercentLayoutHelper
                 false);
         if (percentVal != null)
         {
-            checkForInfoExists(info);
+            info = checkForInfoExists(info);
             info.maxHeightPercent = percentVal;
         }
         //minWidth
@@ -379,7 +379,7 @@ public class PercentLayoutHelper
                 true);
         if (percentVal != null)
         {
-            checkForInfoExists(info);
+            info = checkForInfoExists(info);
             info.minWidthPercent = percentVal;
         }
         //minHeight
@@ -388,7 +388,7 @@ public class PercentLayoutHelper
                 false);
         if (percentVal != null)
         {
-            checkForInfoExists(info);
+            info = checkForInfoExists(info);
             info.minHeightPercent = percentVal;
         }
 
@@ -717,7 +717,7 @@ public class PercentLayoutHelper
         int state = ViewCompat.getMeasuredWidthAndState(view) & ViewCompat.MEASURED_STATE_MASK;
         if (info == null || info.widthPercent == null)
         {
-            return false ;
+            return false;
         }
         return state == ViewCompat.MEASURED_STATE_TOO_SMALL && info.widthPercent.percent >= 0 &&
                 info.mPreservedParams.width == ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -728,7 +728,7 @@ public class PercentLayoutHelper
         int state = ViewCompat.getMeasuredHeightAndState(view) & ViewCompat.MEASURED_STATE_MASK;
         if (info == null || info.heightPercent == null)
         {
-           return false ;
+            return false;
         }
         return state == ViewCompat.MEASURED_STATE_TOO_SMALL && info.heightPercent.percent >= 0 &&
                 info.mPreservedParams.height == ViewGroup.LayoutParams.WRAP_CONTENT;

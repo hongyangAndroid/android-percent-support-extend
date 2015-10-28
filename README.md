@@ -17,7 +17,7 @@
 目前最新版本为，尽可能使用最新版本，源码和demo在github中： 
 
 ```xml
-compile 'com.zhy:percent-support-extends:1.1.0'
+compile 'com.zhy:percent-support-extends:1.1.1'
 ```
 
 ## 一 扩展的功能
