@@ -87,6 +87,9 @@ public class PercentLayoutHelper
     private static int mWidthScreen;
     private static int mHeightScreen;
 
+    private static int mSmallEdge;
+    private static int mLongEdge;
+
     public PercentLayoutHelper(ViewGroup host)
     {
         mHost = host;
@@ -100,6 +103,8 @@ public class PercentLayoutHelper
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mWidthScreen = outMetrics.widthPixels;
         mHeightScreen = outMetrics.heightPixels;
+        mSmallEdge = Math.min(mWidthScreen,mHeightScreen);
+        mLongEdge = Math.max(mWidthScreen,mHeightScreen);
     }
 
 
@@ -274,6 +279,10 @@ public class PercentLayoutHelper
                 return mWidthScreen;
             case BASE_SCREEN_HEIGHT:
                 return mHeightScreen;
+            case BASE_SMALL_EDGE:
+                return mSmallEdge;
+            case BASE_LONG_EDGE:
+                return mLongEdge;
         }
         return 0;
     }
@@ -561,7 +570,7 @@ public class PercentLayoutHelper
     }
 
 
-    private static final String REGEX_PERCENT = "^(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)%([s]?[wh]?)$";
+    private static final String REGEX_PERCENT = "^(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)%(([s]?[wh]?)|([sl]?[e]?))$";
 
     /**
      * widthStr to PercentVal
@@ -600,6 +609,12 @@ public class PercentLayoutHelper
         } else if (percentStr.endsWith(PercentLayoutInfo.BASEMODE.SH))
         {
             percentVal.basemode = PercentLayoutInfo.BASEMODE.BASE_SCREEN_HEIGHT;
+        } else if (percentStr.endsWith(PercentLayoutInfo.BASEMODE.SE))
+        {
+            percentVal.basemode = PercentLayoutInfo.BASEMODE.BASE_SMALL_EDGE;
+        } else if (percentStr.endsWith(PercentLayoutInfo.BASEMODE.LE))
+        {
+            percentVal.basemode = PercentLayoutInfo.BASEMODE.BASE_LONG_EDGE;
         } else if (percentStr.endsWith(PercentLayoutInfo.BASEMODE.PERCENT))
         {
             if (isOnWidth)
@@ -617,7 +632,7 @@ public class PercentLayoutHelper
             percentVal.basemode = PercentLayoutInfo.BASEMODE.BASE_HEIGHT;
         } else
         {
-            throw new IllegalArgumentException("the " + percentStr + " must be endWith [%|w|h|sw|sh]");
+            throw new IllegalArgumentException("the " + percentStr + " must be endWith [%|w|h|sw|sh|se|le]");
         }
 
         return percentVal;
@@ -745,7 +760,7 @@ public class PercentLayoutHelper
         private enum BASEMODE
         {
 
-            BASE_WIDTH, BASE_HEIGHT, BASE_SCREEN_WIDTH, BASE_SCREEN_HEIGHT;
+            BASE_WIDTH, BASE_HEIGHT, BASE_SCREEN_WIDTH, BASE_SCREEN_HEIGHT,BASE_SMALL_EDGE,BASE_LONG_EDGE;
 
             /**
              * width_parent
@@ -767,6 +782,16 @@ public class PercentLayoutHelper
              * height_screen
              */
             public static final String SH = "sh";
+
+            /**
+             * small_edge
+             */
+            public static final String SE = "se";
+
+            /**
+             * long_edge
+             */
+            public static final String LE = "le";
         }
 
         public static class PercentVal
