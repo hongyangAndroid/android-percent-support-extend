@@ -1,3 +1,5 @@
+# @Deprecated
+
 # android-percent-support-extend
 
 >对于android-percent-support的扩展库。
