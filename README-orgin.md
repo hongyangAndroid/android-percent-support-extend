@@ -27,9 +27,9 @@ dependencies {
 }
 ```
 
-###Supported Layouts :
+### Supported Layouts :
 
-####PercentRelativeLayout
+#### PercentRelativeLayout
 ```xml
 <android.support.percent.PercentRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -67,7 +67,7 @@ dependencies {
 </android.support.percent.PercentRelativeLayout>
 ```
 
-####PercentFrameLayout
+#### PercentFrameLayout
 ```xml
 <android.support.percent.PercentFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,7 +78,7 @@ dependencies {
 </android.support.percent.PercentFrameLayout>
 ```
 
-###Stylable :
+### Stylable :
 
 - heightPercent
 - widthPercent
@@ -100,4 +100,4 @@ Pre-requisites
 
 according to the the manifest minsdk is v7 (android 2.1) 
 
-####License Mit
+#### License Mit
