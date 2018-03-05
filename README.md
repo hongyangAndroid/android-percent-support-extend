@@ -123,7 +123,7 @@ dependencies {
 ```
 不需要导入官方的percent-support-lib了。
 
-对于的三个类分别为：
+对应的三个类分别为：
 
 ```xml
 com.zhy.android.percent.support.PercentLinearLayout
