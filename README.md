@@ -151,7 +151,7 @@ com.zhy.android.percent.support.PercentFrameLayout
 - app:layout_maxWidthPercent
 - app:layout_maxHeightPercent
 - app:layout_minWidthPercent
-- app:_minHeightPercent
+- app:layout_minHeightPercent
 
 对于值可以取：10%w , 10%h , 10% , 10%sw , 10%sh
 
