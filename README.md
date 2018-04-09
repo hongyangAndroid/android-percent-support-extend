@@ -123,7 +123,7 @@ dependencies {
 ```
 不需要导入官方的percent-support-lib了。
 
-对于的三个类分别为：
+对应的三个类分别为：
 
 ```xml
 com.zhy.android.percent.support.PercentLinearLayout
@@ -133,25 +133,25 @@ com.zhy.android.percent.support.PercentFrameLayout
 
 ###支持的属性 :
 
-- layout_heightPercent
-- layout_widthPercent
-- layout_marginBottomPercent
-- layout_marginEndPercent
-- layout_marginLeftPercent
-- layout_marginPercent
-- layout_marginRightPercent 
-- layout_marginStartPercent
-- layout_marginTopPercent
-- layout_textSizePercent
-- layout_maxWidthPercent
-- layout_maxHeightPercent
-- layout_minWidthPercent
-- layout_minHeightPercent
-- layout_paddingPercent
-- layout_paddingTopPercent
-- layout_paddingBottomPercent
-- layout_paddingLeftPercent
-- layout_paddingRightPercent
+- app:layout_widthPercent
+- app:layout_heightPercent
+- app:layout_marginPercent
+- app:layout_marginTopPercent
+- app:layout_marginBottomPercent
+- app:layout_marginLeftPercent
+- app:layout_marginRightPercent 
+- app:layout_marginStartPercent
+- app:layout_marginEndPercent
+- app:layout_paddingPercent
+- app:layout_paddingTopPercent
+- app:layout_paddingBottomPercent
+- app:layout_paddingLeftPercent
+- app:layout_paddingRightPercent
+- app:layout_textSizePercent
+- app:layout_maxWidthPercent
+- app:layout_maxHeightPercent
+- app:layout_minWidthPercent
+- app:layout_minHeightPercent
 
 对于值可以取：10%w , 10%h , 10% , 10%sw , 10%sh
 
